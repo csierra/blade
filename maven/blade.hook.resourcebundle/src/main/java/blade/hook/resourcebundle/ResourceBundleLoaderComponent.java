@@ -15,8 +15,9 @@
 package blade.hook.resourcebundle;
 
 import com.liferay.portal.kernel.util.AggregateResourceBundleLoader;
+import com.liferay.portal.kernel.util.CacheResourceBundleLoader;
+import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.util.ResourceBundleLoader;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -45,9 +46,10 @@ public class ResourceBundleLoaderComponent implements ResourceBundleLoader {
 		ResourceBundleLoader resourceBundleLoader) {
 
 		_resourceBundleLoader = new AggregateResourceBundleLoader(
-			ResourceBundleUtil.getResourceBundleLoader(
-				"content.Language",
-				ResourceBundleLoaderComponent.class.getClassLoader()),
+			new CacheResourceBundleLoader(
+				new ClassResourceBundleLoader(
+					"content.Language",
+					ResourceBundleLoaderComponent.class.getClassLoader())),
 			resourceBundleLoader);
 	}
 
