@@ -1,0 +1,6 @@
+Bundle-SymbolicName: blade.hook.resource.bundle
+Bundle-Version: 1.0.0
+Provide-Capability:\
+	liferay.resource.bundle;resource.bundle.base.name="content.Language",\
+	liferay.resource.bundle;resource.bundle.aggregate="(bundle.symbolic.name=blade.hook.resource.bundle),(&(!(resource.bundle.aggregate=*))(bundle.symbolic.name=com.liferay.blogs.web))";bundle.symbolic.name=com.liferay.blogs.web;resource.bundle.base.name="content.Language";service.ranking=0;servlet.context.name=blogs-web
+Require-Capability: liferay.resource.bundle;filter:="(bundle.symbolic.name=com.liferay.blogs.web)"
